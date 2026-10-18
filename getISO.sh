@@ -22,9 +22,9 @@ default_pull(){
                 echo "./website/downloads/$directory"/"$toDownLoad"
                 #contentLength=$(curl -I -s "$pullLine/$toDownLoad" | awk 'BEGIN { IGNORECASE=1 } /^Content-Length:/ {gsub("\r", "", $2); print $2}')
                 #size=$((size + contentLength))
-                echo "$size"
+                #echo "$size"
                 curl --create-dirs -L -s "$pullLine"/"$toDownLoad" -o "./temporary/$directory"/"$toDownLoad"
-
+                mkdir -p "./website/downloads/$directory"
                 mv "./temporary/$directory"/"$toDownLoad" "./website/downloads/$directory"/"$toDownLoad"
                 
             fi
