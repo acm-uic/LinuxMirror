@@ -1,0 +1,6 @@
+https://mirrors.lug.mtu.edu/ubuntu-releases
+http://arch.mirror.constant.com/iso/latest
+https://mirror.cs.jmu.edu/pub/linuxmint/images/debian
+https://mirrors.lug.mtu.edu/kali-images/current
+https://mirrors.lug.mtu.edu/voidlinux/live/current
+https://mirrors.lug.mtu.edu/alpine/latest-stable/releases/x86_64

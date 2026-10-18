@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+    .selectReleaseType {
+        display: flex;           
+        flex-direction: row;      
+        justify-content: left;  
+        gap: 12px;               
+        padding: 20px;
+    }
+
+    .releaseButton {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #c0f0ff;
+        }
+
+    .releaseButton:hover {
+        background-color: #80c5e0;
+    }
+
+</style>
+<title>Index Of Releases</title>
+</head>
+<body>
+
+<h1 id="title">Index of Releases</h1>
+<hr>
+<div class="selectReleaseType">
+    <button class="releaseButton"  onclick="fillReleases('Alpine')">Alpine Linux</button>
+    <button class="releaseButton"  onclick="fillReleases('Arch')">Arch Linux</button>
+    <button class="releaseButton"  onclick="fillReleases('Cinnamon')">Cinnamon (debian)</button>
+    <button class="releaseButton"  onclick="fillReleases('Kali')">Kali</button>
+    <button class="releaseButton"  onclick="fillReleases('Ubuntu')">Ubuntu</button>
+    <button class="releaseButton"  onclick="fillReleases('Void')">Void</button>
+    <button class="releaseButton"  onclick="fillReleases('Misc')">Misc</button>
+
+    <script>
+
+        async function getFiles(path) {
+            const response = await fetch(path);
+            const html = await response.text();
+
+            const doc = new DOMParser().parseFromString(html, "text/html");
+            console.log(doc);
+            console.log(doc.querySelectorAll("li"));
+
+            return [...doc.querySelectorAll("a")].map(a => a.getAttribute("href")).filter(href => href && href !== "../");
+
+
+        }
+
+
+        async function fillReleases(text){
+            element = document.getElementById("content");
+            releaseTitle = document.getElementById("title");
+
+            releaseTitle.textContent = "Index of Stored " + text + " Releases";
+
+            array = await getFiles("./downloads/"+ text);
+
+            element.replaceChildren();
+
+            for (file of array) {
+                newElement = document.createElement("a");
+                newElement.href = "/downloads/" + text+ "/" + file;
+                newElement.download = file;
+                newElement.text = file;
+                element.appendChild(newElement);
+            }
+
+        }
+
+    </script>
+
+
+</div>
+
+<hr>
+
+<pre id="content">
+</pre>
+</body>
+</html>
