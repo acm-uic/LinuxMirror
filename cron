@@ -1,0 +1,2 @@
+30 22 * * * gitPull.sh
+30 23 * * SUN getISO.sh
