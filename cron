@@ -1,2 +1,2 @@
-30 22 * * * gitPull.sh
-30 23 * * SUN getISO.sh
+30 22 * * * /home/acmadmin/LinuxMirror/gitPull.sh
+30 23 * * /home/acmadmin/LinuxMirror/SUN getISO.sh

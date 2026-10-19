@@ -18,8 +18,6 @@ default_pull(){
             toDownLoad=$(echo "$htmlLine" | awk -F 'href="' '{if (NF>1) {split($2, a, "\""); print a[1]}}')
             length=${#toDownLoad}
             if [[ length -ge 6 ]]; then
-                echo "$pullLine"/"$toDownLoad"
-                echo "./website/downloads/$directory"/"$toDownLoad"
                 #contentLength=$(curl -I -s "$pullLine/$toDownLoad" | awk 'BEGIN { IGNORECASE=1 } /^Content-Length:/ {gsub("\r", "", $2); print $2}')
                 #size=$((size + contentLength))
                 #echo "$size"
